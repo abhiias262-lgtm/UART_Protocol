@@ -1,0 +1,87 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "E:\Edu_software\verilog\iverilog\lib\ivl\system.vpi";
+:vpi_module "E:\Edu_software\verilog\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "E:\Edu_software\verilog\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "E:\Edu_software\verilog\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "E:\Edu_software\verilog\iverilog\lib\ivl\va_math.vpi";
+S_000001bde9e72ce0 .scope module, "Baud_rate_genarator" "Baud_rate_genarator" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /OUTPUT 1 "tx_enb";
+    .port_info 3 /OUTPUT 1 "rx_enb";
+v000001bde9f79c50_0 .net *"_ivl_0", 31 0, L_000001bde9eee2e0;  1 drivers
+L_000001bde9eeee38 .functor BUFT 1, C4<0000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v000001bde9f7a030_0 .net *"_ivl_11", 21 0, L_000001bde9eeee38;  1 drivers
+L_000001bde9eeee80 .functor BUFT 1, C4<00000000000000000000000101000101>, C4<0>, C4<0>, C4<0>;
+v000001bde9f7a0d0_0 .net/2u *"_ivl_12", 31 0, L_000001bde9eeee80;  1 drivers
+L_000001bde9eeeda8 .functor BUFT 1, C4<0000000000000000000>, C4<0>, C4<0>, C4<0>;
+v000001bde9f7bb50_0 .net *"_ivl_3", 18 0, L_000001bde9eeeda8;  1 drivers
+L_000001bde9eeedf0 .functor BUFT 1, C4<00000000000000000001010001011000>, C4<0>, C4<0>, C4<0>;
+v000001bde9f7bbf0_0 .net/2u *"_ivl_4", 31 0, L_000001bde9eeedf0;  1 drivers
+v000001bde9e72e70_0 .net *"_ivl_8", 31 0, L_000001bde9eeea60;  1 drivers
+o000001bde9ea70f8 .functor BUFZ 1, C4<z>; HiZ drive
+v000001bde9e72f10_0 .net "clk", 0 0, o000001bde9ea70f8;  0 drivers
+o000001bde9ea7128 .functor BUFZ 1, C4<z>; HiZ drive
+v000001bde9e72fb0_0 .net "rst", 0 0, o000001bde9ea7128;  0 drivers
+v000001bde9e73050_0 .var "rx_counter", 9 0;
+v000001bde9eedc50_0 .net "rx_enb", 0 0, L_000001bde9eee420;  1 drivers
+v000001bde9eedcf0_0 .var "tx_counter", 12 0;
+v000001bde9eee920_0 .net "tx_enb", 0 0, L_000001bde9eee9c0;  1 drivers
+E_000001bde9f7c470 .event posedge, v000001bde9e72fb0_0, v000001bde9e72f10_0;
+L_000001bde9eee2e0 .concat [ 13 19 0 0], v000001bde9eedcf0_0, L_000001bde9eeeda8;
+L_000001bde9eee9c0 .cmp/eq 32, L_000001bde9eee2e0, L_000001bde9eeedf0;
+L_000001bde9eeea60 .concat [ 10 22 0 0], v000001bde9e73050_0, L_000001bde9eeee38;
+L_000001bde9eee420 .cmp/eq 32, L_000001bde9eeea60, L_000001bde9eeee80;
+    .scope S_000001bde9e72ce0;
+T_0 ;
+    %wait E_000001bde9f7c470;
+    %load/vec4 v000001bde9e72fb0_0;
+    %flag_set/vec4 8;
+    %jmp/1 T_0.2, 8;
+    %load/vec4 v000001bde9eedcf0_0;
+    %pad/u 32;
+    %cmpi/e 5208, 0, 32;
+    %flag_or 8, 4;
+T_0.2;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 13;
+    %store/vec4 v000001bde9eedcf0_0, 0, 13;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v000001bde9eedcf0_0;
+    %addi 1, 0, 13;
+    %store/vec4 v000001bde9eedcf0_0, 0, 13;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_000001bde9e72ce0;
+T_1 ;
+    %wait E_000001bde9f7c470;
+    %load/vec4 v000001bde9e72fb0_0;
+    %flag_set/vec4 8;
+    %jmp/1 T_1.2, 8;
+    %load/vec4 v000001bde9e73050_0;
+    %pad/u 32;
+    %cmpi/e 325, 0, 32;
+    %flag_or 8, 4;
+T_1.2;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 10;
+    %store/vec4 v000001bde9e73050_0, 0, 10;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v000001bde9e73050_0;
+    %addi 1, 0, 10;
+    %store/vec4 v000001bde9e73050_0, 0, 10;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Baud_rate.v";
